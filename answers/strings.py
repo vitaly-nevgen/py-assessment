@@ -18,5 +18,5 @@ def count_occurrences(string, item):
     pass
 
 
-def string_format(string, params, default_value):
+def string_format(string, params):
     pass
