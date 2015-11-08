@@ -2,6 +2,7 @@ import unittest
 
 from answers import functions
 
+from helpers.exec_time import ExecTimer
 
 class FunctionsTestCase(unittest.TestCase):
 
@@ -31,3 +32,29 @@ class FunctionsTestCase(unittest.TestCase):
 
         self.assertEqual(test_func('Hello'), '<b>Hello</b>')
         self.assertEqual(test_func('Hello, World!'), '<b>Hello, World!</b>')
+
+    def test_get_fibonacci_number(self):
+        """
+        You need to return number on n's position of fibonacci sequence
+        """
+        self.assertEqual(functions.get_fibonacci_number(5), 5)
+        self.assertEqual(functions.get_fibonacci_number(10), 55)
+
+    def test_cached_function(self):
+        """
+        You need to create function with cached calculations
+        """
+        timer = ExecTimer()
+
+        functions.cached_calculations(functions.get_fibonacci_number, 27)
+        time_1 = timer.getvalue()
+
+        timer.reset()
+
+        functions.cached_calculations(functions.get_fibonacci_number, 27)
+        time_2 = timer.getvalue()
+
+        time_ratio = (time_2/time_1)*100
+
+        # second function call must be at least 99% faster than first call
+        self.assertTrue(time_ratio < 1, "Function runs too long, seems no caching")

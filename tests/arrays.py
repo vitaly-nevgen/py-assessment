@@ -1,7 +1,7 @@
 import unittest
+import sys
 
 from answers import arrays
-
 
 class ArraysTestCase(unittest.TestCase):
 
@@ -17,3 +17,13 @@ class ArraysTestCase(unittest.TestCase):
         You need to remove duplicates from list
         """
         self.assertEqual(arrays.remove_duplicates([1, 2, 3, 5, 3]), [1, 2, 3, 5])
+
+    def test_low_memory_array(self):
+        """
+        You need to return a low memory array or array-like object
+        filled with numbers stating from zero eg. arr[50] = 50
+        """
+        arr = arrays.get_low_memory_array(10000)
+        self.assertTrue(sys.getsizeof(arr) < 1000, "Array uses more memory than allowed")
+
+        self.assertEqual(arr[9237], 9237)
