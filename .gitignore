@@ -2,3 +2,5 @@
 .idea/*
 __pycache__
 answers_real
+tests/develop.py
+answers/develop.py
